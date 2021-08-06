@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" slot="icon-only" [routerLink]="['/main']">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Item Out-of-Stock</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="refresher($event)" slot="fixed" [disabled]="false">
+    <ion-refresher-content
+    pullingIcon="arrow-down"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <h1 style="font-family: 'Times New Roman', Times, serif">
+    List of Item out of stock
+  </h1>
+  <p style="color: grey;"> Items are not detected after 1 hour or more</p>
+
+  <ion-list *ngFor="let Items of item">
+    <ion-card class="detail">
+      <h2>Item UUID: {{Items.UUID}}</h2>
+      <h3>Last seen: {{Items.device_data.DATE}} {{Items.device_data.TIME}}</h3>
+
+      <ion-button (click)="details(Items.UUID)"> details </ion-button>
+      <ion-button color="danger" (click)="delete(Items.UUID)"
+        >Remove
+        <ion-icon name="trash-outline"> </ion-icon>
+      </ion-button>
+    </ion-card>
+  </ion-list>
+</ion-content>

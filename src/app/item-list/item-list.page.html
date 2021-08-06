@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" slot="icon-only" [routerLink]="['/main']">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Item List</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" slot="icon-only" (click)="additems()">
+    <ion-icon name="add-circle-outline"></ion-icon>
+     ADD
+    </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="refresher($event)" slot="fixed" [disabled]="false">
+    <ion-refresher-content
+    pullingIcon="arrow-down"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngFor="let items of stock">
+    <!-- display items from database -->
+    <ion-card class="item">
+    <h2>UUID: {{items.UUID}}</h2>
+    <h3>Name: {{items.IL_NAME}}</h3>
+    <p>Brand: {{items.IL_BRAND}}</p>
+    <p>Type: {{items.IL_TYPE}}</p>
+    <p>Date Updated: {{items.IL_DATETIME}}</p>
+    <p>Due Date: {{items.IL_DUE}}</p>
+    <!-- edit item -->
+    <ion-button color="warning" (click)="edititem(items.UUID)"
+      >Edit
+      <ion-icon name="create-outline"> </ion-icon>
+    </ion-button>
+    <!-- delete item -->
+    <ion-button color="danger" (click)="delete(items.UUID)"
+      >Delete
+      <ion-icon name="trash-outline"> </ion-icon>
+    </ion-button>
+    </ion-card>
+  </ion-list>
+</ion-content>

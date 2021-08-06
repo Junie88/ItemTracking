@@ -1,0 +1,78 @@
+<ion-content>
+  <ion-grid class="grid1">
+    <ion-row class="row1">
+      <ion-col>
+        <h1
+          style="
+            color: white;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;" >
+          Smart Shelves
+        </h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="row2">
+      <ion-col> </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-slide>
+    <div class="logintitle">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h1>
+              Login <ion-icon name="key-outline" style="color: blue"></ion-icon>
+            </h1>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item class="vertical-space">
+                <!-- validate with db -->
+                <ion-label position="floating">
+                  <ion-icon name="person-outline"></ion-icon> Username
+                </ion-label>
+                <ion-input
+                  type="text"
+                  class="form-control"
+                  placeholder=" Enter your Username"
+                  required
+                  [(ngModel)]="username"
+                ></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">
+                  <ion-icon name="lock-closed-outline"></ion-icon>
+                  Password</ion-label
+                >
+                <ion-input
+                  type="password"
+                  class="form-control"
+                  placeholder=" Enter your password"
+                  required
+                  [(ngModel)]="password"
+                ></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="login(username,password)"
+            >
+              Login
+              <ion-icon name="navigate-circle-sharp"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-slide>
+</ion-content>

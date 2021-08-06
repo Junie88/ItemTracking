@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" slot="icon-only" [routerLink]="['/main']">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title text-center>Items Detected</ion-title>
+    <!-- <ion-buttons slot="end">
+    <ion-button fill="clear" slot="icon-only" (click)="sync()">
+    <ion-icon name="sync-outline"></ion-icon>
+    </ion-button>
+      </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-refresher (ionRefresh)="refresher($event)" slot="fixed" [disabled]="false">
+      <ion-refresher-content
+      pullingIcon="arrow-down"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
+    <p style="color: grey;"> Items are detected within 1 hour</p>
+    <ion-item *ngFor="let items of ibeacon">
+      <ion-card class="detail">
+        <h1>UUID: {{items.UUID}}</h1>
+        <h2>Major: {{items.device_data.MAJOR}}</h2>
+        <h2>Minor: {{items.device_data.MINOR}}</h2>
+        <h2>DateTime: {{items.device_data.DATE}} {{items.device_data.TIME}}</h2>
+        <ion-button color="warning" (click)="edit(items.UUID)"
+          >Add Details
+          <ion-icon name="create-outline"> </ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="delete(items.UUID)"
+          >Delete
+          <ion-icon name="trash-outline"> </ion-icon>
+        </ion-button>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>
+

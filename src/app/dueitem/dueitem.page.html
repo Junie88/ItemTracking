@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" slot="icon-only" [routerLink]="['/overdue']">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+    <ion-title>Items</ion-title>
+
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="refresher($event)" slot="fixed" [disabled]="false">
+    <ion-refresher-content
+    pullingIcon="arrow-down"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <h1>
+    List of Items
+  </h1>
+  <ion-list *ngFor="let items of stock">
+    <!-- display items from database -->
+    <h2>UUID: {{items.UUID}}</h2>
+    <h3>Name: {{items.IL_NAME}}</h3>
+    <p>Brand: {{items.IL_BRAND}}</p>
+    <p>Type: {{items.IL_TYPE}}</p>
+    <p>Date: {{items.IL_DATETIME}}</p>
+    <!-- edit item -->
+    <ion-button color="warning" (click)="additem(items.UUID)">Add
+      <ion-icon name="create-outline"> </ion-icon>
+    </ion-button>
+</ion-list>
+</ion-content>

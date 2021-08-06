@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" slot="icon-only" [routerLink]="['/main']">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Notifications</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-list *ngFor="let Items of item">
+  <ion-refresher (ionRefresh)="refresher($event)" slot="fixed" [disabled]="false">
+    <ion-refresher-content
+    pullingIcon="arrow-down"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-card class="Out-of-Stock" >
+  <p>Item out of stock for: {{Items.UUID}}</p>
+  <p>Last seen: {{Items.device_data.DATE}} {{Items.device_data.TIME}}</p>
+  <ion-button color="primary" (click)="details(Items.UUID)">Details</ion-button>
+</ion-card>
+</ion-list>
+
+<ion-list *ngFor="let Items of stock">
+  <h1 style="color: orangered;"> Item Due Today</h1>
+  <ion-card class="due">
+  <p>Item Name: {{Items.IL_NAME}}</p>
+  <p>Item Brand: {{Items.IL_BRAND}}</p>
+  <p>Item Type: {{Items.IL_TYPE}}</p>
+  <p style="color: red;">Due Date: {{Items.IL_DUE}}</p>
+  </ion-card>
+</ion-list>
+</ion-content>

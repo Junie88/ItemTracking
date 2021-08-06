@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title text-center>Main Page</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" slot="icon-only" (click)="notification()">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" slot="icon-only" (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="wrapper">
+    <header (click)="adminconfig()">
+      <ion-icon name="person-circle-outline" class="iconsize"></ion-icon>
+      <h1>User Configuration</h1>
+    </header>
+
+    <div class="box orange" (click)="newitem()">
+      <ion-icon name="duplicate-outline" class="iconsize"></ion-icon>
+      <h2>Item Detected</h2>
+    </div>
+
+    <div class="box blue" (click)="itemlist()">
+      <ion-icon name="list-outline" class="iconsize"></ion-icon>
+      <h2>Item Details</h2>
+    </div>
+
+    <div class="box red" (click)="nostock()">
+      <ion-icon name="warning-outline" class="iconsize"></ion-icon>
+      <h2>Out-Of-Stock</h2>
+    </div>
+
+    <div class="box yellow" (click)="overdue()">
+      <ion-icon name="calendar-outline" class="iconsize"></ion-icon>
+      <h2>Item Due</h2>
+    </div>
+
+    <footer (click)="location()">
+      <ion-icon name="location-outline" class="iconsize"></ion-icon>
+      <h1>Location</h1>
+    </footer>
+  </div>
+</ion-content>

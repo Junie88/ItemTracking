@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" slot="icon-only" [routerLink]="['/main']">
+        <ion-icon name="return-up-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Item Shelf-Life</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" slot="icon-only" [routerLink]="['/dueitem']">
+        <ion-icon name="add-outline"></ion-icon>
+        ADD
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="refresher($event)" slot="fixed" [disabled]="false">
+    <ion-refresher-content
+    pullingIcon="arrow-down"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <h1>List of Item Due</h1>
+  
+  <h1><b>Past Due</b></h1>
+  <ion-list *ngFor="let items of stock">
+    <!-- display items from database -->
+    <ion-card class="item">
+    <h2>UUID: {{items.UUID}}</h2>
+    <h3>Name: {{items.IL_NAME}}</h3>
+    <p>Brand: {{items.IL_BRAND}}</p>
+    <p>Type: {{items.IL_TYPE}}</p>
+    <p>Date Updated: {{items.IL_DATETIME}}</p>
+    <p style="color: red">Due: {{items.IL_DUE}}</p>
+
+    <ion-button color="warning" (click)="edit(items.UUID)"
+      >Edit
+      <ion-icon name="create-outline"> </ion-icon>
+    </ion-button>
+    </ion-card>
+  </ion-list>
+
+  <h1><b>Item Due Soon</b></h1>
+  <ion-list *ngFor="let items of futurestock">
+    <!-- display items from database -->
+    <ion-card class="item">
+    <h2>UUID: {{items.UUID}}</h2>
+    <h3>Name: {{items.IL_NAME}}</h3>
+    <p>Brand: {{items.IL_BRAND}}</p>
+    <p>Type: {{items.IL_TYPE}}</p>
+    <p>Date Updated: {{items.IL_DATETIME}}</p>
+    <p style="color: green">Due: {{items.IL_DUE}}</p>
+
+    <ion-button color="warning" (click)="edit(items.UUID)">Edit
+      <ion-icon name="create-outline"> </ion-icon>
+    </ion-button>
+    </ion-card>
+  </ion-list>
+</ion-content>
